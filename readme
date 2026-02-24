@@ -1,0 +1,38 @@
+PS C:\Users\bykovskydav\Desktop\Luk\base> docker ps
+CONTAINER ID   IMAGE                       COMMAND                  CREATED          STATUS                          PORTS                    NAMES
+6705a28b5c99   base-backend                "docker-entrypoint.s…"   29 minutes ago   Up 29 minutes                   0.0.0.0:4000->3000/tcp   base-backend-1
+316fe09f4b67   postgres:15.16-alpine3.22   "docker-entrypoint.s…"   32 minutes ago   Up 32 minutes                   0.0.0.0:5432->5432/tcp   base-db-1
+
+docker exec -it 316fe09f4b67 psql -U myuser -d mydb
+
+mydb=# \dt
+Did not find any relations.
+mydb=# CREATE TABLE users (
+mydb(#   id SERIAL PRIMARY KEY,
+mydb(#   name VARCHAR(100),
+mydb(#   email VARCHAR(100)
+mydb(# );
+CREATE TABLE
+mydb=# \dt
+        List of relations        
+ Schema | Name  | Type  | Owner  
+--------+-------+-------+--------
+ public | users | table | myuser 
+(1 row)
+
+mydb=# INSERT INTO users (name, email) VALUES ('Иван Иванов', 'ivan@example.com');
+INSERT 0 1
+mydb=# \dt
+        List of relations
+ Schema | Name  | Type  | Owner
+--------+-------+-------+--------
+ public | users | table | myuser
+(1 row)
+
+mydb=# SELECT * FROM users;
+ id |    name     |      email       
+----+-------------+------------------
+  1 | Иван Иванов | ivan@example.com
+(1 row)
+
+mydb=# \q
