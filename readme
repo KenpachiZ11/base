@@ -36,3 +36,10 @@ mydb=# SELECT * FROM users;
 (1 row)
 
 mydb=# \q
+
+docker exec -it 316fe09f4b67 psql -U myuser -d mydb
+mydb=# \l
+mydb=# \c mydb;
+You are now connected to database "mydb" as user "myuser".
+
+\dt
