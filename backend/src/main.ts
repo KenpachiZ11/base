@@ -12,6 +12,7 @@ async function bootstrap() {
 
   setupSwagger(app);
 
+  console.log('🚀 Application started!');
   await app.listen(process.env.PORT ?? 4001); // Запуск на данный момент на 4001 порту
 };
 

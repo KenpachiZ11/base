@@ -8,5 +8,6 @@ export const ormConfig: TypeOrmModuleOptions = {
   password: 'mypassword',
   database: 'mydb',
   entities: [__dirname + '../../**/*.entity{.ts, .js}'],
-  synchronize: true
+  synchronize: true,
+  // url: 'postgresql://myuser:mypassword@localhost:5432/mydb'
 };
