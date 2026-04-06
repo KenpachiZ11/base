@@ -7,7 +7,7 @@ import { AppModule } from './app.module';
 import { setupSwagger } from './config/swagger.config';
 import { DataSource } from 'typeorm';
 import { adminUser } from './admin/admin.seed';
-
+import { OrgsLiteSeed, OrgsSeed } from './orgs/orgs.seed';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,6 +17,8 @@ async function bootstrap() {
   // Админка
   const dataSource = app.get(DataSource);
   await adminUser(dataSource);
+  await OrgsSeed(dataSource);
+  await OrgsLiteSeed(dataSource);
 
   console.log('🚀 Application started!');
   await app.listen(process.env.PORT ?? 4001); // Запуск на данный момент на 4001 порту
