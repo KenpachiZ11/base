@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 export class OrgsEntity {
   
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id_orgs: string;
 
   @Column({ unique: true })
   name: string;
@@ -24,7 +24,7 @@ export class OrgsEntity {
 export class OrgsLiteEntity {
   
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id_orgs: string;
 
   @Column({ unique: true })
   name: string;

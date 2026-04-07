@@ -13,7 +13,7 @@ export class OrgsService {
   async findAll(): Promise<OrgsEntity[]> {
     const orgs = await this.orgsRepository.find();
     return orgs.map(org => ({
-      id: org.id,
+      id_orgs: org.id_orgs,
       name: org.name,
       description: org.description,
       users: org.users,
@@ -32,7 +32,7 @@ export class OrgsLiteService {
   async findAll(): Promise<OrgsLiteEntity[]> {
     const orgs = await this.orgsRepository.find();
     return orgs.map(org => ({
-      id: org.id,
+      id_orgs: org.id_orgs,
       name: org.name,
       description: org.description,
       usersCount: org.usersCount,
