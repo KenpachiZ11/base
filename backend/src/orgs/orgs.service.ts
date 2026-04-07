@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { OrgsEntity, OrgsLiteEntity } from './orgs.entity';
+import { CreateOrgDto } from './dto/create-org.dto';
+import { ResponseOrgDto } from './dto/response-org.dto';
 
 @Injectable()
 export class OrgsService {
@@ -9,6 +11,16 @@ export class OrgsService {
     @InjectRepository(OrgsEntity)
     private readonly orgsRepository: Repository<OrgsEntity>
   ) {}
+
+  async create(dto: CreateOrgDto): Promise<ResponseOrgDto> {
+    const newOrg = this.orgsRepository.create({
+      ...dto,
+      users: dto.users ?? [],
+      company: dto.company ?? []
+    });
+
+    return await this.orgsRepository.save(newOrg);
+  }
 
   async findAll(): Promise<OrgsEntity[]> {
     const orgs = await this.orgsRepository.find();

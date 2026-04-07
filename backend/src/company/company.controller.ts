@@ -10,7 +10,7 @@ import {
 import { CompanyEntity } from "./company.entity";
 import { CompanyService } from "./company.service";
 
-@ApiTags('Компания')
+@ApiTags('Дочернии компании')
 @Controller('company')
 @ApiExtraModels(CompanyEntity)
 export class CompanyController {

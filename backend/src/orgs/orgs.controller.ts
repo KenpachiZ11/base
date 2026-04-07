@@ -9,10 +9,11 @@ import {
 } from "@nestjs/swagger";
 import { OrgsEntity, OrgsLiteEntity } from "./orgs.entity";
 import { OrgsLiteService, OrgsService } from "./orgs.service";
+import { ResponseOrgDto, ResponseOrgLiteDto } from "./dto/response-org.dto";
 
 @ApiTags('Организации')
 @Controller('orgs')
-@ApiExtraModels(OrgsEntity, OrgsLiteEntity)
+@ApiExtraModels(ResponseOrgDto, ResponseOrgLiteDto)
 export class OrgsController {
   constructor(
     private readonly orgsService: OrgsService,
@@ -35,17 +36,17 @@ export class OrgsController {
       oneOf: [
         { 
           type: 'array',
-          items: { $ref: getSchemaPath(OrgsEntity) },
+          items: { $ref: getSchemaPath(ResponseOrgDto) },
         },
         { 
           type: 'array',
-          items: { $ref: getSchemaPath(OrgsLiteEntity) },
+          items: { $ref: getSchemaPath(ResponseOrgLiteDto) },
         },
       ],
     },
   })
 
-  async findAll(@Query('lite') lite?: string): Promise<OrgsEntity[] | OrgsLiteEntity[]> {
+  async findAll(@Query('lite') lite?: string): Promise<ResponseOrgDto[] | ResponseOrgLiteDto[]> {
     if(lite === 'true' || lite === '') {
       return this.orgsLiteService.findAll();
     };
